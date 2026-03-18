@@ -1,0 +1,71 @@
+name: Build & Publish Windows Installer
+
+# Triggers on any version tag push (e.g. v1.0.0, v2.3.1-rc1)
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write   # needed for softprops/action-gh-release to create a release
+
+jobs:
+  build-windows-installer:
+    name: Build Inno Setup installer
+    runs-on: windows-latest
+
+    steps:
+      # ── Checkout repository ──────────────────────────────────────────────────
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # ── Install Inno Setup 6 via Chocolatey ──────────────────────────────────
+      - name: Install Inno Setup
+        shell: pwsh
+        run: choco install innosetup --yes --no-progress
+
+      # ── Build the installer ───────────────────────────────────────────────────
+      - name: Build installer with ISCC
+        shell: cmd
+        working-directory: installer\windows
+        run: |
+          "C:\Program Files (x86)\Inno Setup 6\ISCC.exe" setup.iss
+        # Output: installer\windows\dist\BetRiversTracker-Setup-<version>.exe
+
+      # ── Locate the built .exe (tag may differ from AppVersion in .iss) ────────
+      - name: Find installer artifact
+        id: find_exe
+        shell: pwsh
+        run: |
+          $exe = Get-ChildItem -Path "installer\windows\dist" -Filter "*.exe" |
+                 Select-Object -First 1 -ExpandProperty FullName
+          if (-not $exe) { throw "No .exe found in installer\windows\dist" }
+          Write-Output "path=$exe" >> $env:GITHUB_OUTPUT
+          Write-Output "name=$(Split-Path $exe -Leaf)" >> $env:GITHUB_OUTPUT
+
+      # ── Create GitHub Release and attach the .exe ─────────────────────────────
+      - name: Publish GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: ${{ steps.find_exe.outputs.path }}
+          name: "BetRivers Poker Tracker ${{ github.ref_name }}"
+          body: |
+            ## BetRivers Poker Tracker ${{ github.ref_name }}
+
+            ### Windows
+            Download and run **${{ steps.find_exe.outputs.name }}** — the wizard
+            handles Python, PostgreSQL, and database setup automatically.
+
+            > **SmartScreen warning?**  Click *More info* → *Run anyway*.
+            > The installer is not code-signed; Windows flags unsigned executables.
+
+            ### macOS
+            Clone the repository and double-click `installer/macos/install.command`.
+
+            > **Gatekeeper warning?**  Right-click the file → *Open* → *Open* to
+            > bypass the first-run quarantine flag.
+
+            ---
+            See the [full changelog](https://github.com/LWashington11/BetRiversTracker_private/commits/${{ github.ref_name }}).
+          draft: false
+          prerelease: ${{ contains(github.ref_name, '-') }}

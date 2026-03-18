@@ -1,0 +1,4 @@
+# Ensure shell scripts are always executable when cloned/checked out
+installer/macos/install.command text eol=lf diff=binary
+installer/macos/launch.command text eol=lf diff=binary
+installer/windows/launcher.vbs text eol=crlf

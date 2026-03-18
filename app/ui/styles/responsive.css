@@ -1,0 +1,195 @@
+/*
+ * BetRivers Poker Tracker — Responsive CSS
+ *
+ * Single source of truth for all responsive layout rules.
+ * Injected once per page load via inject_responsive_css().
+ *
+ * Target: usable down to ~800 px window width.
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. GLOBAL FOUNDATION
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Prevent the entire app from collapsing below a usable width */
+.stApp {
+    min-width: 780px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. BUTTONS — prevent vertical text wrapping
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.stButton > button,
+.stDownloadButton > button,
+.stLinkButton > a {
+    white-space: nowrap !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 38px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. TABLES / DATAFRAMES — horizontal scroll, min-widths
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Allow horizontal scrolling when table overflows its container */
+[data-testid="stDataFrame"],
+.stDataFrame {
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Ensure the inner table doesn't compress below a readable width */
+[data-testid="stDataFrame"] > div {
+    min-width: 600px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. METRIC CARDS — consistent sizing
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-testid="stMetric"] {
+    min-width: 0;
+    overflow: hidden;
+}
+
+[data-testid="stMetric"] [data-testid="stMetricValue"] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(1rem, 2vw, 1.75rem);
+}
+
+[data-testid="stMetric"] [data-testid="stMetricLabel"] {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: clamp(0.75rem, 1.2vw, 0.875rem);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. FILTER INPUTS — prevent label detachment & cramping
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Multiselect / selectbox containers */
+[data-testid="stMultiSelect"],
+[data-testid="stSelectbox"] {
+    min-width: 120px;
+}
+
+/* Date inputs */
+[data-testid="stDateInput"] {
+    min-width: 100px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. COLUMNS — reduce gap at narrower widths, prevent collapse
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Tighten the default column gap slightly for denser layouts */
+[data-testid="stHorizontalBlock"] {
+    gap: 0.5rem;
+    flex-wrap: nowrap;
+}
+
+/* Make columns opt-in to wrapping via a custom data attribute */
+[data-testid="stHorizontalBlock"].responsive-wrap {
+    flex-wrap: wrap;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. POPOVER — adequate sizing
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-testid="stPopover"] [data-testid="stPopoverBody"] {
+    min-width: 280px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. SUMMARY ROW — tighter visual coupling to its parent table
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Reduce the vertical gap between a stats table and its summary row
+   when they are siblings inside a container. */
+.stats-table-group [data-testid="stDataFrame"] + [data-testid="stDataFrame"] {
+    margin-top: -0.75rem;
+}
+
+.stats-table-group {
+    margin-bottom: 1rem;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. WELCOME BOX (onboarding screen)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.welcome-box {
+    max-width: 560px;
+    margin: 80px auto 0 auto;
+    padding: 2.5rem 2.5rem 2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    text-align: center;
+    background: #fafafa;
+}
+.welcome-box h1 { font-size: 2rem; margin-bottom: 0.25rem; }
+.welcome-box p  { font-size: 1.05rem; color: #555; margin-top: 0.5rem; }
+.welcome-step   { font-size: 1rem; margin-top: 1.25rem; color: #333; }
+.arrow-hint     { font-size: 1.3rem; font-weight: 700; color: #E03B2B; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   10. PLOTLY CHARTS — prevent overflow
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+[data-testid="stPlotlyChart"] {
+    overflow-x: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   11. RESPONSIVE BREAKPOINTS
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* ── Narrow (< 1000px) ─────────────────────────────────────────────────── */
+@media (max-width: 1000px) {
+
+    /* Allow column rows to wrap onto multiple lines */
+    [data-testid="stHorizontalBlock"] {
+        flex-wrap: wrap;
+    }
+
+    /* KPI metric cards: wrap to 3 + 2 */
+    [data-testid="stHorizontalBlock"] > [data-testid="stMetric"] {
+        flex: 1 1 30% !important;
+        min-width: 140px;
+    }
+
+    /* Welcome box: use more available width */
+    .welcome-box {
+        max-width: 90%;
+        padding: 1.5rem 1.5rem 1.25rem;
+    }
+
+    /* Reduce Plotly chart height slightly */
+    [data-testid="stPlotlyChart"] > div {
+        max-height: 320px;
+    }
+}
+
+/* ── Very narrow (< 850px) ─────────────────────────────────────────────── */
+@media (max-width: 850px) {
+
+    /* Metric values scale down further */
+    [data-testid="stMetric"] [data-testid="stMetricValue"] {
+        font-size: 1rem;
+    }
+
+    /* Tabs: allow text truncation */
+    [data-testid="stTab"] button {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+}
