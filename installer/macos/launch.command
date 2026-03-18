@@ -7,7 +7,7 @@
 #     chmod +x ~/Desktop/BetRiversTracker.command
 #
 # What this script does:
-#   1. Starts (or resumes) the PostgreSQL 16 service via Homebrew.
+#   1. Starts (or resumes) the PostgreSQL 17 service via Homebrew.
 #   2. Activates the virtual environment.
 #   3. Launches Streamlit on localhost:8501.
 #   4. Opens http://localhost:8501 in your default browser.
@@ -34,7 +34,7 @@ fi
 # freshly opened Terminal window (e.g. on Apple Silicon before shell profile loads).
 BREW="/opt/homebrew/bin/brew"
 [[ ! -x "${BREW}" ]] && BREW="/usr/local/bin/brew"   # Intel fallback
-"${BREW}" services start postgresql@16 2>/dev/null || true
+"${BREW}" services start postgresql@17 2>/dev/null || true
 
 # ── Activate the venv ────────────────────────────────────────────────────────
 if [[ ! -f "${VENV}/bin/activate" ]]; then

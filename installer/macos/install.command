@@ -10,7 +10,7 @@
 # What this script does:
 #   1. Detects CPU architecture (Apple Silicon vs Intel) and logs it.
 #   2. Installs Homebrew if it is not already present.
-#   3. Installs Python 3.13 and PostgreSQL 16 via Homebrew.
+#   3. Installs Python 3.14 and PostgreSQL 17 via Homebrew.
 #   4. Starts the PostgreSQL service and waits for it to accept connections.
 #   5. Copies the app to ~/Applications/BetRiversTracker/.
 #   6. Creates a Python virtual environment and installs all dependencies.
@@ -24,8 +24,8 @@
 set -euo pipefail
 
 # ── Version pins (bump these when Homebrew drops an older formula) ────────────
-PG_VERSION="postgresql@16"   # e.g. postgresql@17 when 16 is removed
-PY_VERSION="python@3.13"     # e.g. python@3.14
+PG_VERSION="postgresql@17"   # e.g. postgresql@18 when 17 is removed
+PY_VERSION="python@3.14"     # e.g. python@3.15
 
 # ── Colours (using printf for portability) ────────────────────────────────────
 RED='\033[0;31m'; GREEN='\033[0;32m'; YELLOW='\033[1;33m'; NC='\033[0m'

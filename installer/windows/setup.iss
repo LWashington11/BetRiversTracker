@@ -1,5 +1,5 @@
 ; BetRivers Poker Tracker — Inno Setup Script
-; Online installer: downloads Python 3.13 and PostgreSQL 16 if not already present.
+; Online installer: downloads Python 3.14 and PostgreSQL 17 if not already present.
 ;
 ; Build prerequisites:
 ;   Inno Setup 6.x  https://jrsoftware.org/isinfo.php
@@ -152,33 +152,51 @@ end;
 { ─────────────────────────────────────────────────────────────────────────── }
 
 function FindPgBinDir: string;
+var
+  Versions: array[0..4] of string;
+  I: Integer;
 begin
-  if DirExists('C:\Program Files\PostgreSQL\16\bin') then
-    Result := 'C:\Program Files\PostgreSQL\16\bin'
-  else if DirExists('C:\Program Files\PostgreSQL\15\bin') then
-    Result := 'C:\Program Files\PostgreSQL\15\bin'
-  else
-    Result := '';
+  Versions[0] := '18'; Versions[1] := '17'; Versions[2] := '16';
+  Versions[3] := '15'; Versions[4] := '14';
+  for I := 0 to 4 do begin
+    if DirExists('C:\Program Files\PostgreSQL\' + Versions[I] + '\bin') then begin
+      Result := 'C:\Program Files\PostgreSQL\' + Versions[I] + '\bin';
+      Exit;
+    end;
+  end;
+  Result := '';
 end;
 
 function FindPgDataDir: string;
+var
+  Versions: array[0..4] of string;
+  I: Integer;
 begin
-  if DirExists('C:\Program Files\PostgreSQL\16\data') then
-    Result := 'C:\Program Files\PostgreSQL\16\data'
-  else if DirExists('C:\Program Files\PostgreSQL\15\data') then
-    Result := 'C:\Program Files\PostgreSQL\15\data'
-  else
-    Result := '';
+  Versions[0] := '18'; Versions[1] := '17'; Versions[2] := '16';
+  Versions[3] := '15'; Versions[4] := '14';
+  for I := 0 to 4 do begin
+    if DirExists('C:\Program Files\PostgreSQL\' + Versions[I] + '\data') then begin
+      Result := 'C:\Program Files\PostgreSQL\' + Versions[I] + '\data';
+      Exit;
+    end;
+  end;
+  Result := '';
 end;
 
 function FindPgServiceName: string;
+var
+  Versions: array[0..4] of string;
+  I: Integer;
 begin
-  if DirExists('C:\Program Files\PostgreSQL\16') then
-    Result := 'postgresql-x64-16'
-  else if DirExists('C:\Program Files\PostgreSQL\15') then
-    Result := 'postgresql-x64-15'
-  else
-    Result := '';
+  Versions[0] := '18'; Versions[1] := '17'; Versions[2] := '16';
+  Versions[3] := '15'; Versions[4] := '14';
+  for I := 0 to 4 do begin
+    if DirExists('C:\Program Files\PostgreSQL\' + Versions[I]) then begin
+      Result := 'postgresql-x64-' + Versions[I];
+      Exit;
+    end;
+  end;
+  Result := '';
 end;
 
 { ─────────────────────────────────────────────────────────────────────────── }
@@ -195,9 +213,19 @@ begin
 end;
 
 function IsPostgresInstalled: Boolean;
+var
+  Versions: array[0..4] of string;
+  I: Integer;
 begin
-  Result := DirExists('C:\Program Files\PostgreSQL\16') or
-            DirExists('C:\Program Files\PostgreSQL\15');
+  Versions[0] := '18'; Versions[1] := '17'; Versions[2] := '16';
+  Versions[3] := '15'; Versions[4] := '14';
+  Result := False;
+  for I := 0 to 4 do begin
+    if DirExists('C:\Program Files\PostgreSQL\' + Versions[I]) then begin
+      Result := True;
+      Exit;
+    end;
+  end;
 end;
 
 { ─────────────────────────────────────────────────────────────────────────── }
@@ -206,17 +234,26 @@ end;
 
 function FindPython: string;
 var
-  Candidates: array[0..2] of string;
+  Candidates: array[0..8] of string;
   WhereOutAnsi: AnsiString;
   WhereOut, Line: string;
   I, NL: Integer;
 begin
+  { Check newer Python versions first so we prefer the highest available. }
   Candidates[0] := ExpandConstant('{localappdata}') +
+                    '\Programs\Python\Python315\python.exe';
+  Candidates[1] := ExpandConstant('{localappdata}') +
+                    '\Programs\Python\Python314\python.exe';
+  Candidates[2] := ExpandConstant('{localappdata}') +
                     '\Programs\Python\Python313\python.exe';
-  Candidates[1] := 'C:\Program Files\Python313\python.exe';
-  Candidates[2] := 'C:\Program Files (x86)\Python313\python.exe';
+  Candidates[3] := 'C:\Program Files\Python315\python.exe';
+  Candidates[4] := 'C:\Program Files\Python314\python.exe';
+  Candidates[5] := 'C:\Program Files\Python313\python.exe';
+  Candidates[6] := 'C:\Program Files (x86)\Python315\python.exe';
+  Candidates[7] := 'C:\Program Files (x86)\Python314\python.exe';
+  Candidates[8] := 'C:\Program Files (x86)\Python313\python.exe';
 
-  for I := 0 to 2 do begin
+  for I := 0 to 8 do begin
     if FileExists(Candidates[I]) then begin
       Result := Candidates[I];
       Exit;
@@ -547,19 +584,19 @@ var
 begin
   if IsPythonInstalled then Exit;
 
-  Status('Downloading Python 3.13...');
+  Status('Downloading Python 3.14...');
   Pkg := ExpandConstant('{tmp}\python_setup.exe');
   if not DownloadFile(
-      'https://www.python.org/ftp/python/3.13.0/python-3.13.0-amd64.exe',
+      'https://www.python.org/ftp/python/3.14.2/python-3.14.2-amd64.exe',
       Pkg) or not FileExists(Pkg) then begin
-    MsgBox('Failed to download Python 3.13.' + #13#10 +
+    MsgBox('Failed to download Python 3.14.' + #13#10 +
            'Please install it manually from' + #13#10 +
            'https://www.python.org/downloads/' + #13#10 +
            'then re-run this installer.', mbError, MB_OK);
     Exit;
   end;
 
-  Status('Installing Python 3.13...');
+  Status('Installing Python 3.14...');
   RunProc(Pkg,
     '/quiet InstallAllUsers=0 PrependPath=1 Include_test=0 Include_doc=0',
     '');
@@ -575,19 +612,19 @@ begin
   WasPostgresPreInstalled := IsPostgresInstalled;
   if WasPostgresPreInstalled then Exit;
 
-  Status('Downloading PostgreSQL 16 (this can take a while)...');
+  Status('Downloading PostgreSQL 17 (this can take a while)...');
   Pkg := ExpandConstant('{tmp}\postgresql_setup.exe');
   if not DownloadFile(
-      'https://get.enterprisedb.com/postgresql/postgresql-16.6-1-windows-x64.exe',
+      'https://get.enterprisedb.com/postgresql/postgresql-17.4-1-windows-x64.exe',
       Pkg) or not FileExists(Pkg) then begin
-    MsgBox('Failed to download PostgreSQL 16.' + #13#10 +
+    MsgBox('Failed to download PostgreSQL 17.' + #13#10 +
            'Please install it manually from' + #13#10 +
            'https://www.postgresql.org/download/' + #13#10 +
            'then re-run this installer.', mbError, MB_OK);
     Exit;
   end;
 
-  Status('Installing PostgreSQL 16 (this may take several minutes)...');
+  Status('Installing PostgreSQL 17 (this may take several minutes)...');
   RunProc(Pkg,
     '--mode unattended --unattendedmodeui none' +
     ' --superpassword "' + DbPassword + '"' +
@@ -616,7 +653,7 @@ begin
     PythonExe := FindPython;
     if PythonExe = '' then begin
       MsgBox('Could not find a Python installation.' + #13#10 +
-             'Please install Python 3.13 from' + #13#10 +
+             'Please install Python 3.14 from' + #13#10 +
              'https://www.python.org/downloads/' + #13#10 +
              'then re-run this installer.', mbError, MB_OK);
       Exit;
