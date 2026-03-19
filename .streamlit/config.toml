@@ -1,2 +1,6 @@
 [server]
 maxUploadSize = 50
+
+[client]
+# Always show the ⋮ menu (includes theme toggle in Streamlit ≥ 1.55).
+toolbarMode = "developer"

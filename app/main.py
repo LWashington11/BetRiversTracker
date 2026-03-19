@@ -45,9 +45,6 @@ inject_responsive_css()
 st.markdown("""
     <style>
     .stAppDeployButton {display: none;}
-    #MainMenu {display: none;}
-    .stToolbarActions {display: none;}
-    [data-testid="stStatusWidget"] {display: none;}
     </style>
     """, unsafe_allow_html=True)
 

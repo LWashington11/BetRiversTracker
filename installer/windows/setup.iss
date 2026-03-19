@@ -628,7 +628,8 @@ begin
   RunProc(Pkg,
     '--mode unattended --unattendedmodeui none' +
     ' --superpassword "' + DbPassword + '"' +
-    ' --serverport 5432', '');
+    ' --serverport 5432' +
+    ' --disable-components pgAdmin,stackbuilder', '');  { Skip pgAdmin 4 and Stack Builder — saves ~400 MB and several install minutes. }
   DeleteFile(Pkg);
 end;
 
