@@ -18,8 +18,8 @@ Pre-built installers handle everything automatically — no programming experien
 2. **Right-click the installer and select "Run as administrator"** — PostgreSQL and database setup require admin privileges. Windows will show a User Access Control (UAC) prompt.
 3. Follow the wizard (Welcome → License → Location → Install → Done).
 4. The wizard will:
-   - Download and install **Python 3.13** silently if not already present.
-   - Download and install **PostgreSQL 16** silently if not already present.
+   - Download and install **Python 3.14** silently if not already present.
+   - Download and install **PostgreSQL 17** silently if not already present.
    - Create a Python virtual environment and install all dependencies.
    - Auto-generate a secure password and write a `.env` configuration file.
    - Initialise the database schema.
@@ -34,7 +34,7 @@ Pre-built installers handle everything automatically — no programming experien
 2. In Finder, double-click **`installer/macos/install.command`**.
    - The script detects your CPU architecture (Apple Silicon or Intel) and logs it.
    - Installs **Homebrew** if missing.
-   - Installs **Python 3.13** and **PostgreSQL 16** via Homebrew.
+   - Installs **Python 3.14** and **PostgreSQL 17** via Homebrew.
    - Copies the app to `~/Applications/BetRiversTracker/`.
    - Creates a virtual environment, installs dependencies, and initialises the database.
    - Places a **`BetRiversTracker.command`** launcher on your Desktop.
