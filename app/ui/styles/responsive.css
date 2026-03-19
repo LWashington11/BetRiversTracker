@@ -132,11 +132,47 @@
     border-radius: 12px;
     text-align: center;
     background: #fafafa;
+    color: #333;
 }
-.welcome-box h1 { font-size: 2rem; margin-bottom: 0.25rem; }
-.welcome-box p  { font-size: 1.05rem; color: #555; margin-top: 0.5rem; }
-.welcome-step   { font-size: 1rem; margin-top: 1.25rem; color: #333; }
-.arrow-hint     { font-size: 1.3rem; font-weight: 700; color: #E03B2B; }
+
+/* Dark theme support */
+@media (prefers-color-scheme: dark) {
+    .welcome-box {
+        border-color: #444;
+        background: #262626;
+        color: #e0e0e0;
+    }
+}
+
+.welcome-box h1 { 
+    font-size: 2rem; 
+    margin-bottom: 0.25rem;
+    color: inherit;
+}
+.welcome-box p  { 
+    font-size: 1.05rem; 
+    color: inherit; 
+    margin-top: 0.5rem; 
+}
+.welcome-step   { 
+    font-size: 1rem; 
+    margin-top: 1.25rem; 
+    color: inherit;
+}
+.welcome-box hr {
+    border: none;
+    border-top: 1px solid #d0d0d0;
+}
+@media (prefers-color-scheme: dark) {
+    .welcome-box hr {
+        border-top-color: #444;
+    }
+}
+.arrow-hint     { 
+    font-size: 1.3rem; 
+    font-weight: 700; 
+    color: #E03B2B; 
+}
 
 /* ═══════════════════════════════════════════════════════════════════════════
    10. PLOTLY CHARTS — prevent overflow

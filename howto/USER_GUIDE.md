@@ -6,17 +6,43 @@ This guide walks through every major feature of the app with annotated screensho
 
 ## Table of Contents
 
-1. [Importing Hand Histories](#1-importing-hand-histories)
-2. [Dashboard — Session Report](#2-dashboard--session-report)
-3. [Dashboard — Results by Stakes](#3-dashboard--results-by-stakes)
-4. [Dashboard — Results by Position](#4-dashboard--results-by-position)
-5. [Hands Report](#5-hands-report)
-6. [Hand Replayer](#6-hand-replayer)
-7. [Purging Hands](#7-purging-hands)
+1. [Welcome Page — Getting Started](#1-welcome-page--getting-started)
+2. [Importing Hand Histories](#2-importing-hand-histories)
+3. [Dashboard — Session Report](#3-dashboard--session-report)
+4. [Dashboard — Results by Stakes](#4-dashboard--results-by-stakes)
+5. [Dashboard — Results by Position](#5-dashboard--results-by-position)
+6. [Hands Report](#6-hands-report)
+7. [Hand Replayer](#7-hand-replayer)
+8. [Purging Hands](#8-purging-hands)
 
 ---
 
-## 1. Importing Hand Histories
+## 1. Welcome Page — Getting Started
+
+![Welcome Page](StartPage.png)
+
+When you launch BetRivers Poker Tracker for the first time, you'll see a welcome card in the center of the screen with three setup steps.
+
+The sidebar on the left shows the **Hero Player** section where you need to create a screen name (your poker alias).
+
+### Setup Steps
+
+Follow these three simple steps to get started:
+
+**① Open the Sidebar**
+Click the **≫** arrow on the top-left to open the sidebar if it's not already visible. The sidebar contains the Hero Player controls.
+
+**② Create a Hero Name**
+Under the **♠ Hero** section in the sidebar, click on the **✎ Enter a new name…** dropdown menu. Type your screen name (the name you use at the poker tables) and press **Enter**. This name will be used to identify your hands and stats throughout the app.
+
+**③ Import Your Hand Histories**
+Once you've set a hero name, use **File → Import** (or the Import button in the top-right) to load your hand history files. You can upload individual `.txt` files or point the app at a folder containing multiple hand histories. The app will automatically parse and load your hands.
+
+Once you've completed these steps, you'll see the Dashboard with your poker statistics.
+
+---
+
+## 2. Importing Hand Histories
 
 ![Import Hand Histories dialog](ImportHands.png)
 
@@ -29,7 +55,7 @@ After upload, the app parses each file and loads new hands into the database. Du
 
 ---
 
-## 2. Dashboard — Session Report
+## 3. Dashboard — Session Report
 
 ![Dashboard Session Report](../howto/Dashboard.png)
 
@@ -66,7 +92,7 @@ Below the chart is a session-by-session breakdown table with columns for date, s
 
 ---
 
-## 3. Dashboard — Results by Stakes
+## 4. Dashboard — Results by Stakes
 
 ![Dashboard Results by Stakes](../howto/Dashboard_Stakes.png)
 
@@ -76,7 +102,7 @@ The table below breaks down the same figures per stakes level and includes seats
 
 ---
 
-## 4. Dashboard — Results by Position
+## 5. Dashboard — Results by Position
 
 ![Dashboard Results by Position](../howto/Dashboard_position.png)
 
@@ -86,7 +112,7 @@ The accompanying table lets you quickly see which positions are your most (and l
 
 ---
 
-## 5. Hands Report
+## 6. Hands Report
 
 ![Hands Report page](../howto/HandsReport.png)
 
@@ -124,7 +150,7 @@ Click **Columns** to customise which columns are displayed. Select one or more h
 
 ---
 
-## 6. Hand Replayer
+## 7. Hand Replayer
 
 ![Hand Replayer page](../howto/HandReplayer.png)
 
@@ -162,7 +188,7 @@ The panel on the right lists every action in the hand grouped by street (PREFLOP
 
 ---
 
-## 7. Purging Hands
+## 8. Purging Hands
 
 ![Purge Hands dialog](../howto/PurgeHands.png)
 
