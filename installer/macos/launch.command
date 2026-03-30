@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# BetRivers Poker Tracker — macOS Daily Launcher
+# BetRivers Poker Tracker - Unofficial — macOS Daily Launcher
 # -------------------------------------------------------
 # Double-click this file on your Desktop to start the app.
 #
@@ -49,7 +49,7 @@ source "${VENV}/bin/activate"
 
 # ── Check if Streamlit is already running ────────────────────────────────────
 if lsof -i :"${PORT}" &>/dev/null; then
-    echo "BetRivers Tracker appears to be already running on port ${PORT}."
+    echo "BetRivers Tracker - Unofficial appears to be already running on port ${PORT}."
     open "http://localhost:${PORT}"
     exit 0
 fi
@@ -63,7 +63,7 @@ STREAMLIT_PID=$!
 trap "kill ${STREAMLIT_PID} 2>/dev/null; exit 0" EXIT INT TERM
 
 # ── Wait for Streamlit to be ready, then open browser ────────────────────────
-echo "Starting BetRivers Tracker..."
+echo "Starting BetRivers Tracker - Unofficial..."
 for i in $(seq 1 30); do
     if curl -s -o /dev/null "http://localhost:${PORT}" 2>/dev/null; then
         open "http://localhost:${PORT}"

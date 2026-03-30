@@ -48,9 +48,9 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: ${{ steps.find_exe.outputs.path }}
-          name: "BetRivers Poker Tracker ${{ github.ref_name }}"
+          name: "BetRivers Poker Tracker - Unofficial ${{ github.ref_name }}"
           body: |
-            ## BetRivers Poker Tracker ${{ github.ref_name }}
+            ## BetRivers Poker Tracker - Unofficial ${{ github.ref_name }}
 
             ### Windows
             Download and run **${{ steps.find_exe.outputs.name }}** — the wizard

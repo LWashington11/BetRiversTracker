@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# BetRivers Poker Tracker — macOS One-Shot Installer
+# BetRivers Poker Tracker - Unofficial — macOS One-Shot Installer
 # -------------------------------------------------------
 # Double-click this file in Finder (or run it in Terminal) to install
-# everything needed to run BetRivers Poker Tracker on macOS.
+# everything needed to run BetRivers Poker Tracker - Unofficial on macOS.
 #
 # Permissions issues? If this file won't execute, run in Terminal:
 #     chmod +x installer/macos/install.command
@@ -51,7 +51,7 @@ trap cleanup EXIT
 # ── Banner ────────────────────────────────────────────────────────────────────
 echo ""
 echo "============================================="
-echo "  BetRivers Poker Tracker — macOS Installer"
+echo "  BetRivers Poker Tracker - Unofficial — macOS Installer"
 echo "============================================="
 echo ""
 

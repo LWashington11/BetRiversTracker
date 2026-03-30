@@ -1,4 +1,4 @@
-# BetRivers Poker Tracker — User Guide
+# BetRivers Poker Tracker - Unofficial — User Guide
 
 This guide walks through every major feature of the app with annotated screenshots.
 
@@ -21,7 +21,7 @@ This guide walks through every major feature of the app with annotated screensho
 
 ![Welcome Page](StartPage.png)
 
-When you launch BetRivers Poker Tracker for the first time, you'll see a welcome card in the center of the screen with three setup steps.
+When you launch BetRivers Poker Tracker - Unofficial for the first time, you'll see a welcome card in the center of the screen with three setup steps.
 
 The sidebar on the left shows the **Hero Player** section where you need to create a screen name (your poker alias).
 

@@ -1,4 +1,4 @@
-; BetRivers Poker Tracker — Inno Setup Script
+; BetRivers Poker Tracker - Unofficial — Inno Setup Script
 ; Online installer: downloads Python 3.14 and PostgreSQL 17 if not already present.
 ;
 ; Build prerequisites:
@@ -9,7 +9,7 @@
 ;
 ; Output: dist\BetRiversTracker-Setup-<version>.exe
 
-#define AppName      "BetRivers Poker Tracker"
+#define AppName      "BetRivers Poker Tracker - Unofficial"
 #define AppVersion   "1.0.0"
 #define AppPublisher "LWashington11"
 #define AppURL       "https://github.com/LWashington11/BetRiversTracker_private"

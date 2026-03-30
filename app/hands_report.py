@@ -1,5 +1,5 @@
 """
-BetRivers Poker Tracker — Hands in Report (Streamlit page).
+BetRivers Poker Tracker - Unofficial — Hands in Report (Streamlit page).
 
 Entry-point page that wires the three layers together:
     Data Access  →  View Model  →  UI View

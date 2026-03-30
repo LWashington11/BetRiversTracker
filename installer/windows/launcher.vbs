@@ -1,4 +1,4 @@
-' BetRivers Poker Tracker — Windows Daily Launcher
+' BetRivers Poker Tracker - Unofficial — Windows Daily Launcher
 ' -------------------------------------------------------
 ' Called by the Start Menu / Desktop shortcut.
 ' 1. Starts the PostgreSQL 16 service (idempotent — safe to call when already running).
@@ -62,8 +62,8 @@ mainPy       = appDir & "\app\main.py"
 
 If Not fso.FileExists(streamlitExe) Then
     MsgBox "Streamlit not found at:" & vbCrLf & streamlitExe & vbCrLf & vbCrLf & _
-           "Please re-run the BetRivers Poker Tracker installer.", _
-           vbCritical, "BetRivers Poker Tracker"
+           "Please re-run the BetRivers Poker Tracker - Unofficial installer.", _
+           vbCritical, "BetRivers Poker Tracker - Unofficial"
     WScript.Quit 1
 End If
 

@@ -1,5 +1,5 @@
 @echo off
-:: BetRivers Poker Tracker — Developer build script
+:: BetRivers Poker Tracker - Unofficial — Developer build script
 :: Compiles setup.iss with Inno Setup's command-line compiler (ISCC.exe).
 ::
 :: Prerequisites:
@@ -23,7 +23,7 @@ if not exist "%ISCC%" (
     exit /b 1
 )
 
-echo Building BetRivers Poker Tracker installer...
+echo Building BetRivers Poker Tracker - Unofficial installer...
 "%ISCC%" setup.iss
 if %errorlevel% neq 0 (
     echo Build FAILED with error code %errorlevel%.

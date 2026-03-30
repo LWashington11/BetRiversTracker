@@ -1,5 +1,5 @@
 /*
- * BetRivers Poker Tracker — Responsive CSS
+ * BetRivers Poker Tracker - Unofficial — Responsive CSS
  *
  * Single source of truth for all responsive layout rules.
  * Injected once per page load via inject_responsive_css().
@@ -14,6 +14,12 @@
 /* Prevent the entire app from collapsing below a usable width */
 .stApp {
     min-width: 780px;
+}
+
+/* Reduce default top padding on the main content area */
+[data-testid="stMainBlockContainer"],
+.main .block-container {
+    padding-top: 2rem !important;
 }
 
 /* ═══════════════════════════════════════════════════════════════════════════

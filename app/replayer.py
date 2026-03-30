@@ -1,5 +1,5 @@
 """
-BetRivers Poker Tracker — Hand Replayer
+BetRivers Poker Tracker - Unofficial — Hand Replayer
 
 Standalone Streamlit page that renders an interactive hand-history
 replayer with an oval poker-table layout, step-through controls,
@@ -446,7 +446,7 @@ body {
     position: relative;
     width: 100%;
     max-width: 920px;
-    height: 620px;
+    height: 500px;
     margin: 0 auto;
     overflow: visible;
 }
@@ -767,7 +767,7 @@ def render_action_log(engine: HandReplayEngine, current_index: int) -> None:
         font-family: 'Consolas', 'Courier New', monospace;
         font-size: 13px;
         line-height: 1.65;
-        max-height: 520px;
+        max-height: 440px;
         overflow-y: auto;
         padding: 12px 14px;
         background: #0d1117;
@@ -802,7 +802,7 @@ col_table, col_log = st.columns([2.5, 1])
 with col_table:
     # ── Render the poker table ────────────────────────────────────────
     table_html = render_table_html(state, show_hero, show_results)
-    components.html(table_html, height=650, scrolling=False)
+    components.html(table_html, height=525, scrolling=False)
 
     # ── Action description ────────────────────────────────────────────
     if state.action_text:

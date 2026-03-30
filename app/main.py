@@ -1,5 +1,5 @@
 """
-BetRivers Poker Tracker — Multi-page Streamlit app.
+BetRivers Poker Tracker - Unofficial — Multi-page Streamlit app.
 
 Multi-page layout with:
 - Compact sidebar (hero selector + navigation only)
@@ -22,7 +22,7 @@ if PROJECT_ROOT not in sys.path:
 import streamlit as st
 from app.constants import DONATION_URL, GITHUB_RELEASES_URL
 from app.models import init_db
-from app.hero_store import get_hero_names, get_last_hero, save_hero
+from app.hero_store import get_hero_names, get_last_hero, save_hero, remove_hero
 from app.ui.styles import inject_responsive_css
 
 # ── Page config (must be first Streamlit call) ───────────────────────────────
@@ -30,7 +30,7 @@ from app.ui.styles import inject_responsive_css
 # hero-name prompt is immediately visible; collapse it afterwards.
 _first_run = "_app_initialized" not in st.session_state
 st.set_page_config(
-    page_title="BetRivers Poker Tracker",
+    page_title="BetRivers Poker Tracker - Unofficial",
     page_icon="♠",
     layout="wide",
     initial_sidebar_state="expanded" if _first_run else "collapsed",
@@ -107,6 +107,21 @@ elif _selected:
         st.session_state.hero_name = _selected
         st.rerun()
 
+# Remove option — tucked in a collapsed expander so it stays out of the way
+if _options:
+    with st.sidebar.expander("Manage hero names"):
+        _remove_choice = st.selectbox(
+            "Remove name",
+            options=_options,
+            key="_hero_remove_select",
+        )
+        if st.button("🗑 Remove", key="_hero_remove_btn", type="primary"):
+            remove_hero(_remove_choice)
+            if st.session_state.hero_name == _remove_choice:
+                st.session_state.hero_name = ""
+                st.session_state.pop("_hero_select", None)
+            st.rerun()
+
 if not st.session_state.hero_name:
     st.sidebar.warning("Set a hero name above to get started.")
 
@@ -115,7 +130,7 @@ if not st.session_state.hero_name:
     st.markdown(
         """
         <div class="welcome-box">
-            <h1>♠ BetRivers Poker Tracker</h1>
+            <h1>♠ BetRivers Poker Tracker - Unofficial</h1>
             <p>Track your results, review hand histories, and replay key hands.</p>
             <hr style="margin: 1.25rem 0;">
             <div class="welcome-step">

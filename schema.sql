@@ -1,4 +1,4 @@
--- PostgreSQL schema for BetRivers Poker Tracker
+-- PostgreSQL schema for BetRivers Poker Tracker - Unofficial
 -- Run this manually or let SQLAlchemy create the tables via `python -m app.cli init`
 
 CREATE DATABASE betrivers_tracker;

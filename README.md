@@ -1,4 +1,4 @@
-# BetRivers Poker Tracker
+# BetRivers Poker Tracker - Unofficial
 
 A local poker hand-history tracking application for **BetRivers Poker**. Parses hand histories, stores data in PostgreSQL, and provides a Streamlit dashboard with session reports, cumulative P&L graphs, and a hand replayer.
 
@@ -70,7 +70,7 @@ Pre-built installers handle everything automatically — no programming experien
 
 3. Your shortcuts and database remain intact — launch normally when done.
 
-> **If the update fails during pip install:** Uninstall via **Settings → Apps → BetRivers Poker Tracker → Uninstall**, delete the leftover `C:\Users\<you>\AppData\Local\Programs\BetRiversTracker\venv` folder if it exists, then re-run the new installer.
+> **If the update fails during pip install:** Uninstall via **Settings → Apps → BetRivers Poker Tracker - Unofficial → Uninstall**, delete the leftover `C:\Users\<you>\AppData\Local\Programs\BetRiversTracker\venv` folder if it exists, then re-run the new installer.
 
 ### macOS
 

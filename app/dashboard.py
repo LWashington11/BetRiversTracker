@@ -1,5 +1,5 @@
 """
-BetRivers Poker Tracker — Streamlit Dashboard
+BetRivers Poker Tracker - Unofficial — Streamlit Dashboard
 
 Designed with a compact layout:
 - Compact filter bar at the top (visible immediately)
@@ -673,7 +673,7 @@ with st.container():
 
 if total_in_db == 0:
     st.markdown("---")
-    st.markdown("## 👋 Welcome to BetRivers Poker Tracker!")
+    st.markdown("## 👋 Welcome to BetRivers Poker Tracker - Unofficial!")
     st.info(
         "No hand histories have been imported yet. "
         "Import your BetRivers hand history `.txt` files to get started."

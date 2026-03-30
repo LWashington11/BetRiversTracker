@@ -1,1 +1,1 @@
-# BetRivers Poker Tracker
+# BetRivers Poker Tracker - Unofficial
